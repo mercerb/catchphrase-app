@@ -77,49 +77,11 @@ class ApiService {
     this.context = context;
   }
 
-  public static async Login(username: string, password: string) {
-    let requestBody = {
-      email: username,
-      password: password
-    };
-
-    let response = await this.Post(
-      API_BASE_URL,
-      "identity/login",
-      requestBody,
-      {
-        "Content-Type": "application/json"
-      }
-    );
-
-    let responseJSON = undefined;
-    if (response !== undefined) {
-      responseJSON = await response.json();
-    }
-
-    return responseJSON;
-  }
-
-  public static async GetUserInfo() {
+  public static async GetPhrase() {
     let response = await this.Get(
       API_BASE_URL,
-      `patient/patients/profile/`,
+      `phrases/random/`,
       undefined
-    );
-
-    let responseJSON = undefined;
-    if (response !== undefined) {
-      responseJSON = await response.json();
-    }
-
-    return responseJSON;
-  }
-
-  public static async Signup(requestBody: Patient) {
-    let response = await this.Post(
-      API_BASE_URL,
-      "patient/patients",
-      requestBody
     );
 
     let responseJSON = undefined;
